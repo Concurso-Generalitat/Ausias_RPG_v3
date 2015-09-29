@@ -49,6 +49,8 @@ public class SceneManager : MonoBehaviour
 			// manual scene transition
 			if (Input.GetKeyUp (KeyCode.Keypad0)) Application.LoadLevel (0);
 			if (Input.GetKeyUp (KeyCode.Keypad1)) Application.LoadLevel (1);
+			if (Input.GetKeyUp (KeyCode.Keypad2)) Application.LoadLevel (2);
+			if (Input.GetKeyUp (KeyCode.Keypad3)) Application.LoadLevel (3);
 
 
 
