@@ -25,5 +25,8 @@ public class Generic_Buttons : MonoBehaviour {
 		Application.Quit();
 	}
 
-
+    public void Load_Level1()
+    {
+        Application.LoadLevel(1);
+    }
 }
