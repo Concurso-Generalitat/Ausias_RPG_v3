@@ -14,6 +14,7 @@ public class AusiasControllerScript : MonoBehaviour {
 	void Update () {
 
 		float move = Input.GetAxis ("Vertical");
+
 		anim.SetFloat ("Speed", move);
 	
 	}

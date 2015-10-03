@@ -22,13 +22,16 @@ public class ausiasMovementController : MonoBehaviour {
 			movementDirection *= speed;
 			movementDirection.y = 0;
 
+
 		transform.Rotate (0, Input.GetAxis ("Horizontal") * sensitivity * Time.deltaTime, 0);
 		movementDirection.y -= gravity * Time.deltaTime;
 
-		if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow)) 
-		{
-			controller.Move (movementDirection * Time.deltaTime);
-		}
+		 
+		if (Input.GetKey (KeyCode.S) || Input.GetKey (KeyCode.DownArrow)) 
+		 movementDirection.z = movementDirection.z / 2;
+
+
+		controller.Move (movementDirection * Time.deltaTime);
 
 	}
 }

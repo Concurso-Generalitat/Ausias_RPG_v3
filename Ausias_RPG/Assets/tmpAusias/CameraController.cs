@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
@@ -27,26 +27,28 @@ public class CameraController : MonoBehaviour {
 	float mouseY;
 
 	bool verticalRotationEnabled = true;
-	float verticalRotationMin = 8f;
-	float verticalRotationMax = 65f;
+	//float verticalRotationMin = 8f;
+	//float verticalRotationMax = 65f;
 	
 
 	[HideInInspector] public float cameraHeight,cameraY;
-	float maxCameraHeight = 85f;
+	//float maxCameraHeight = 85f;
 
 	public GameObject mainCamera,scrollAngle;
 	
 	Transform ausiasTransform;
+	float anglePositive;
+	Vector3 tempTrans;
 
 	#endregion
 
 	void Awake()
 	{
-		CameraController.Instance = this;
+		//CameraController.Instance = this;
 	}
 	void Start()
 	{
-
+		anglePositive = 1;
 
 		mouseScrollLimits.leftLimit = mouseBoundary;
 		mouseScrollLimits.rightLimit = mouseBoundary;
@@ -61,10 +63,21 @@ public class CameraController : MonoBehaviour {
 	}
 	void Update ()
 	{
+		tempTrans = ausiasTransform.position;
+		tempTrans.y = tempTrans.y + 1;
+		this.transform.LookAt(tempTrans);
+
+
 		if(Input.GetMouseButton(1))
-		  {
-		transform.RotateAround(ausiasTransform.position,Vector3.up,sensitivity * Time.deltaTime * Input.GetAxis("Mouse X"));
+		 {
+			this.transform.RotateAround(ausiasTransform.position,Vector3.up,sensitivity * Time.deltaTime * Input.GetAxis("Mouse X"));
+
+//			if(desiredRotation.transform.rotation.eulerAngles.x <= 80)
+
+			this.transform.RotateAround(tempTrans,-anglePositive*this.transform.right,sensitivity * Time.deltaTime * Input.GetAxis("Mouse Y"));
+
 		}
+		this.transform.LookAt(tempTrans);
 		applyScroll ();
 
 	}
@@ -92,7 +105,7 @@ public class CameraController : MonoBehaviour {
 		// update camera
 
 		float heightDifference = desiredScrollPosition.y - this.transform.position.y;
-		cameraHeight += heightDifference;
+
 		cameraY = desiredScrollPosition.y;
 
 
