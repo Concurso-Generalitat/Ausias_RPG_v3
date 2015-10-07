@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour {
 
 	public float sensitivity, cameraMoveSpeed = 60f, radius,minZoom = 10, maxZoom = 100;
 	public float mouseBoundary = 25f;
+	public bool scrollWheelEnabled;
 	float mouseX;
 	float mouseY;
 
@@ -58,13 +59,14 @@ public class CameraController : MonoBehaviour {
 
 
 		ausiasTransform = GameObject.FindGameObjectWithTag ("Player").transform;
+
 		scrollAngle = new GameObject();
 
 	}
 	void Update ()
 	{
 		tempTrans = ausiasTransform.position;
-		tempTrans.y = tempTrans.y + 1;
+		tempTrans.y = tempTrans.y + 1.5f;
 		this.transform.LookAt(tempTrans);
 
 
@@ -78,6 +80,7 @@ public class CameraController : MonoBehaviour {
 
 		}
 		this.transform.LookAt(tempTrans);
+		if(scrollWheelEnabled)
 		applyScroll ();
 
 	}
