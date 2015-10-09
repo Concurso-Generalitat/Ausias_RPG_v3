@@ -28,19 +28,17 @@ public class Character_Scene_Text : MonoBehaviour
 	private float fcounter;
     private int counter;
 	private int len;
-	private int updateCounter;
 
 	public int TextNum = 0;
 	public float textSpeed = 0.04f;
 
-	private GameObject ObjSceneManager;
 	private Text message;
 
     void Start()
     {
 		message = this.gameObject.GetComponentInChildren<Text> ();
-		ObjSceneManager = GameObject.Find("SceneManager");
-		updateCounter = counter = 0;
+
+		counter = 0;
 		len = message1 [TextNum].Length;
 		fcounter = 0.0f;
     }
@@ -75,11 +73,7 @@ public class Character_Scene_Text : MonoBehaviour
         {
             if(Input.GetKeyUp(KeyCode.F))
             {
-				ObjSceneManager = GameObject.Find("SceneManager");
-
-				if(ObjSceneManager == null)
-					Debug.Log ("Can't find scene manager");
-
+				GameObject ObjSceneManager = GameObject.Find("SceneManager");
 				ObjSceneManager.GetComponent<SceneManager>().ReturnToPrevScene();
             }
         }
