@@ -28,6 +28,7 @@ public class Character_Scene_Text : MonoBehaviour
 	private float fcounter;
     private int counter;
 	private int len;
+	private int updateCounter;
 
 	public int TextNum = 0;
 	public float textSpeed = 0.04f;
@@ -39,10 +40,9 @@ public class Character_Scene_Text : MonoBehaviour
     {
 		message = this.gameObject.GetComponentInChildren<Text> ();
 		ObjSceneManager = GameObject.Find("SceneManager");
-        counter = 0;
+		updateCounter = counter = 0;
 		len = message1 [TextNum].Length;
 		fcounter = 0.0f;
-        
     }
 	
 	void Update ()
@@ -54,9 +54,9 @@ public class Character_Scene_Text : MonoBehaviour
 				message.text = message1[TextNum];
 				counter = len;
 			}
-
+			
 			float currentTime = Time.timeSinceLevelLoad;
-
+			
 			if (currentTime - fcounter >= textSpeed)
 			{
 				for(float i = 0.0f; i < currentTime - fcounter; i+=textSpeed)
@@ -64,10 +64,10 @@ public class Character_Scene_Text : MonoBehaviour
 					if (counter < len)
 					{
 						message.text += "" + message1[TextNum][counter];
-						counter+=1;
+						counter++;
 					}
 				}
-
+				
 				fcounter = currentTime;
 			}
         }
@@ -83,8 +83,6 @@ public class Character_Scene_Text : MonoBehaviour
 				ObjSceneManager.GetComponent<SceneManager>().ReturnToPrevScene();
             }
         }
-
-
     }
 	    
 }
