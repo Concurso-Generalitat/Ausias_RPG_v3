@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
 public class SceneCharger : MonoBehaviour
 {
@@ -10,16 +9,8 @@ public class SceneCharger : MonoBehaviour
 	public int destinyScene;
 	public bool willReturn = true;
 
-	public GameObject ObjSceneManager;
-
 	public GameObject message;
-	//public GameObject image;
-	//public Text text;
 
-	void Start()
-	{
-		ObjSceneManager = GameObject.Find("SceneManager");
-	}
 	void Update()
 	{
 		if (ausias)
@@ -31,6 +22,7 @@ public class SceneCharger : MonoBehaviour
 				
 				if (Input.GetKeyUp (KeyCode.F))
 				{
+					GameObject ObjSceneManager = GameObject.Find("SceneManager");
 					ObjSceneManager.GetComponent<SceneManager> ().ChangeScene(destinyScene, willReturn);
 				}
 			}

@@ -32,17 +32,15 @@ public class Character_Scene_Text : MonoBehaviour
 	public int TextNum = 0;
 	public float textSpeed = 0.04f;
 
-	private GameObject ObjSceneManager;
 	private Text message;
 
     void Start()
     {
 		message = this.gameObject.GetComponentInChildren<Text> ();
-		ObjSceneManager = GameObject.Find("SceneManager");
-        counter = 0;
+
+		counter = 0;
 		len = message1 [TextNum].Length;
 		fcounter = 0.0f;
-        
     }
 	
 	void Update ()
@@ -54,9 +52,9 @@ public class Character_Scene_Text : MonoBehaviour
 				message.text = message1[TextNum];
 				counter = len;
 			}
-
+			
 			float currentTime = Time.timeSinceLevelLoad;
-
+			
 			if (currentTime - fcounter >= textSpeed)
 			{
 				for(float i = 0.0f; i < currentTime - fcounter; i+=textSpeed)
@@ -64,10 +62,10 @@ public class Character_Scene_Text : MonoBehaviour
 					if (counter < len)
 					{
 						message.text += "" + message1[TextNum][counter];
-						counter+=1;
+						counter++;
 					}
 				}
-
+				
 				fcounter = currentTime;
 			}
         }
@@ -75,16 +73,10 @@ public class Character_Scene_Text : MonoBehaviour
         {
             if(Input.GetKeyUp(KeyCode.F))
             {
-				ObjSceneManager = GameObject.Find("SceneManager");
-
-				if(ObjSceneManager == null)
-					Debug.Log ("Can't find scene manager");
-
+				GameObject ObjSceneManager = GameObject.Find("SceneManager");
 				ObjSceneManager.GetComponent<SceneManager>().ReturnToPrevScene();
             }
         }
-
-
     }
 	    
 }

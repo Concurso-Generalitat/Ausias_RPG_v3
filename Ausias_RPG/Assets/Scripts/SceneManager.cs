@@ -3,11 +3,13 @@ using System.Collections;
 
 public class SceneManager : MonoBehaviour
 {
-
 	public Game_Data gameData;
 	public Game_Saver gameSaver;
+
+	private int current_scene;
 	private bool debugState;
 
+	private Canvas gui;
 
 	static SceneManager Instance;
 
@@ -21,6 +23,7 @@ public class SceneManager : MonoBehaviour
 		gameSaver = new Game_Saver ("GameSlots.txt");
 
 		debugState = false;
+		current_scene = 0;
 	}
 
 	void Start ()
@@ -34,6 +37,8 @@ public class SceneManager : MonoBehaviour
 			GameObject.DontDestroyOnLoad(gameObject);
 			Instance = this;
 		}
+
+		gui = GetComponentInChildren<Canvas> ();
 	}
 	
 	void Update ()
@@ -47,12 +52,6 @@ public class SceneManager : MonoBehaviour
 				Debug.Log("Debug Disabled");
 			}
 
-			// manual scene transition
-			if (Input.GetKeyUp (KeyCode.Keypad0)) Application.LoadLevel (0);
-			if (Input.GetKeyUp (KeyCode.Keypad1)) Application.LoadLevel (1);
-			if (Input.GetKeyUp (KeyCode.Keypad2)) Application.LoadLevel (2);
-			if (Input.GetKeyUp (KeyCode.Keypad3)) Application.LoadLevel (3);
-
 			// log gameData
 			if (Input.GetKeyUp (KeyCode.I))
 				Debug.Log(gameData);
@@ -65,6 +64,23 @@ public class SceneManager : MonoBehaviour
 				Debug.Log("Debug Enabled");
 			}
 		}
+
+		if(current_scene > 0 && current_scene < 7)
+		{
+			gui.enabled = true;
+
+			if(current_scene > 1)
+			{
+				//gui.
+			}
+		}
+		else
+		{
+			gui.enabled = false;
+		}
+
+
+
 	}
 
 	public void ChangeScene(int newScene, bool willReturn)
@@ -72,12 +88,14 @@ public class SceneManager : MonoBehaviour
 		if (!willReturn)
 			gameData.last_scene = newScene;
 
+		current_scene = newScene;
 		Application.LoadLevel (newScene);
 	}
+
 	public void ReturnToPrevScene()
 	{
-		int tmp = this.gameData.last_scene;
-		Application.LoadLevel (tmp);
+		current_scene = gameData.last_scene;
+		Application.LoadLevel (gameData.last_scene);
 	}
 
 
