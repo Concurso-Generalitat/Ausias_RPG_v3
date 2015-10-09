@@ -3,18 +3,6 @@ using System.Collections;
 
 public class Generic_Buttons : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-
-
 	public void Exit_To_Menu()
 	{
 		GameObject ObjSceneManager = GameObject.Find("SceneManager");
@@ -38,4 +26,10 @@ public class Generic_Buttons : MonoBehaviour {
     {
 		AutoFade.LoadLevel(1 ,3,1,Color.black);
     }
+
+	void TravelTo(int place)
+	{
+		GameObject ObjSceneManager = GameObject.Find("SceneManager");
+		ObjSceneManager.GetComponent<SceneManager> ().ChangeScene (place, false);
+	}
 }
