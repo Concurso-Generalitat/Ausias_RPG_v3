@@ -13,7 +13,7 @@ public class Character_Scene_Text : MonoBehaviour
 		"Perfecte, ja tenim les fotos de Viella. Anem a Salardú.               (Prem F)",
 		"Molt bé, ja tenim les fotos de Salardú. Anem al Colomés.               (Prem F)",
 		"Sense el carro les fotos queden increíbles. Anem a Artiés.               (Prem F)",
-		"Ja tenim la Guia de la Vall d’Aran complerta. Gràcies per ajudarme.               (Prem F)",
+		"Ja tenim la Guia de la Vall d’Aran complerta. Gràcies per ajudarme.             (Prem F)",
 		"M’acaba d’arribar la PLACA FOTOGRÁFICA que Juli Soler va encarregar.               (Prem F)",
 		"El monje de Salardú necessita cola? Aquí la tens. Saluda-li de part meva.               (Prem F)",
 		"La campana s’ha trencat. Podries ajudar-me a reparar-la?               (Prem F)",
