@@ -9,9 +9,11 @@ public class SceneManager : MonoBehaviour
 	private int current_scene;
 	private bool debugState;
 
-	private Canvas gui;
+	private GameObject gui;
 
 	static SceneManager Instance;
+
+	private bool sceneChanged;
 
 	void Awake()
 	{
@@ -65,22 +67,28 @@ public class SceneManager : MonoBehaviour
 			}
 		}
 
-		if(current_scene > 0 && current_scene < 7)
+		if(sceneChanged)
 		{
-			gui.enabled = true;
-
-			if(current_scene > 1)
+			if(current_scene > 0 && current_scene < 7)
 			{
-				//gui.
+				if(current_scene < 2) // biblio
+				{
+					gui = GameObject.FindGameObjectWithTag("GUI1");
+				}
+				else if (gameData.act > 1 && gameData.progress >= 30)
+				{
+					gui = GameObject.FindGameObjectWithTag("GUI3");
+				}
+				else
+				{
+					gui = GameObject.FindGameObjectWithTag("GUI2");
+				}
+
+				gui.SetActive(true);
 			}
+
+			sceneChanged = false;
 		}
-		else
-		{
-			gui.enabled = false;
-		}
-
-
-
 	}
 
 	public void ChangeScene(int newScene, bool willReturn)
@@ -89,13 +97,17 @@ public class SceneManager : MonoBehaviour
 			gameData.last_scene = newScene;
 
 		current_scene = newScene;
-		Application.LoadLevel (newScene);
+		sceneChanged = true;
+		gui.SetActive (false);
+		AutoFade.LoadLevel(newScene ,3,1,Color.black);
 	}
 
 	public void ReturnToPrevScene()
 	{
 		current_scene = gameData.last_scene;
-		Application.LoadLevel (gameData.last_scene);
+		sceneChanged = true;
+		gui.SetActive (false);
+		AutoFade.LoadLevel(gameData.last_scene ,3,1,Color.black);
 	}
 
 
