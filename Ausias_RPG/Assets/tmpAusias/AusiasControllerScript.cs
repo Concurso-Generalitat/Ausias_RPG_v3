@@ -16,6 +16,12 @@ public class AusiasControllerScript : MonoBehaviour {
 		float move = Input.GetAxis ("Vertical");
 
 		anim.SetFloat ("Speed", move);
+
+		if (Input.GetKeyDown (KeyCode.Space))
+		{
+			anim.SetBool("Jumping",true);
+			
+		}else anim.SetBool("Jumping",false);
 	
 	}
 }

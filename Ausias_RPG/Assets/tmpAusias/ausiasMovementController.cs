@@ -5,7 +5,9 @@ using System.Collections;
 public class ausiasMovementController : MonoBehaviour {
 
 	public float speed = 20 , sensitivity = 20, gravity = 10;
+	public GameObject ausiastojump;
 	Vector3 movementDirection;
+	public float jumpForce;
 	// Use this for initialization
 	void Start () {
 	
@@ -32,6 +34,9 @@ public class ausiasMovementController : MonoBehaviour {
 
 
 		controller.Move (movementDirection * Time.deltaTime);
+
+
+
 
 	}
 }
