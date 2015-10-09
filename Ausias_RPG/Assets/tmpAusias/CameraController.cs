@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour {
 	public static CameraController Instance;
 
 
-	public float sensitivity, cameraMoveSpeed = 60f, radius,minZoom = 10, maxZoom = 100;
+	public float sensitivity, cameraMoveSpeed = 60f, radius,minZoom = 20, maxZoom = 100;
 	public float mouseBoundary = 25f;
 	public bool scrollWheelEnabled;
 	float mouseX;
