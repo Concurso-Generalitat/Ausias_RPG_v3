@@ -39,8 +39,6 @@ public class SceneManager : MonoBehaviour
 			GameObject.DontDestroyOnLoad(gameObject);
 			Instance = this;
 		}
-
-		gui = GetComponentInChildren<Canvas> ();
 	}
 	
 	void Update ()
