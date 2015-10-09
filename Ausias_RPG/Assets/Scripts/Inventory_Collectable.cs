@@ -15,14 +15,6 @@ public class Inventory_Collectable : MonoBehaviour
 
 	private GameObject ObjSceneManager;
 
-	// Use this for initialization
-	void Start () {
-		text = message.GetComponentInChildren<Text> ();
-		ObjSceneManager = GameObject.Find("SceneManager");
-		text.text = ObjSceneManager.GetComponent<SceneManager> ().gameData.ItemString (id);
-	}
-	
-	// Update is called once per frame
 	void Update ()
 	{
 
@@ -36,8 +28,8 @@ public class Inventory_Collectable : MonoBehaviour
 
 				if (Input.GetKeyUp (KeyCode.F))
 				{
-					ObjSceneManager.GetComponent<SceneManager> ().gameData.Collect(id, ProgressModifier);
-
+					GameObject.Find("SceneManager").GetComponent<SceneManager> ().gameData.Collect(id, ProgressModifier);
+					this.GetComponent<AudioSource>().Play();
 					this.gameObject.SetActive (false);
 				}
 			}
