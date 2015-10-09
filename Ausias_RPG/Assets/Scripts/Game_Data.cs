@@ -1,5 +1,5 @@
-//using UnityEngine;
-//using System.Collections;
+using UnityEngine;
+using System.Collections;
 
 public class Game_Data
 {
@@ -46,9 +46,35 @@ public class Game_Data
 		
 		return returnValue;
 	}
+
+
+	public bool Collect(InventoryItems id, int progressModifier)
+	{
+		for (int i = 0; i < MAX_ITEMS; i++)
+		{
+			if (objectList[i] == InventoryItems.NADA)
+			{
+				objectList[i] = id;
+				progress += progressModifier;
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+
+
+
+
+
+
+
+
 	
 	
-	private string ItemString(InventoryItems item)
+	public string ItemString(InventoryItems item)
 	{
 		switch(item)
 		{

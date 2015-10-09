@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Inventory_Collectable : MonoBehaviour
 {
+	private Transform ausias;
 
-	public Transform other;
 	public GameObject message;
+	private Text text;
+
 	public InventoryItems id = InventoryItems.CAMARA;
 	public int closeDistance = 2;
+	public int ProgressModifier = 0;
 
+	private GameObject ObjSceneManager;
 
 	// Use this for initialization
 	void Start () {
-		// find character in scene
-
-		// find scene manager in scene
-
-	
+		text = message.GetComponentInChildren<Text> ();
+		ObjSceneManager = GameObject.Find("SceneManager");
+		text.text = ObjSceneManager.GetComponent<SceneManager> ().gameData.ItemString (id);
 	}
 	
 	// Update is called once per frame
@@ -24,17 +27,18 @@ public class Inventory_Collectable : MonoBehaviour
 	{
 
 		// check if character is close enough
-		if (other) {
-			Vector3 offset = other.position - transform.position;
+		if (ausias)
+		{
+			Vector3 offset = ausias.position - transform.position;
 			if (offset.sqrMagnitude < closeDistance * closeDistance)
 			{
-				//Debug.Log("You are close");
-
 				message.SetActive(true);
 
 				if (Input.GetKeyUp (KeyCode.F))
 				{
-					Collect ();
+					ObjSceneManager.GetComponent<SceneManager> ().gameData.Collect(id, ProgressModifier);
+
+					this.gameObject.SetActive (false);
 				}
 			}
 			else
@@ -45,32 +49,4 @@ public class Inventory_Collectable : MonoBehaviour
 		}
 
 	}
-
-	void OnCollisionEnter(Collision collision)
-	{
-		if(collision.rigidbody == other)
-		{
-			message.SetActive(true);
-
-			if (Input.GetKeyUp (KeyCode.F))
-			{
-				Collect ();
-			}
-		}
-	}
-
-	void OnCollisionExit(Collision collisionInfo)
-	{
-		message.SetActive(false);
-	}
-
-	public InventoryItems Collect()
-	{
-		message.SetActive(false);
-		gameObject.SetActive (false);
-		return id;
-	}
-
-
-
 }

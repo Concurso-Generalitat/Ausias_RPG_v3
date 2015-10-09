@@ -41,7 +41,8 @@ public class SceneManager : MonoBehaviour
 		// debug state variable control
 		if (debugState)
 		{
-			if (Input.GetKeyUp(KeyCode.Keypad9)){
+			if (Input.GetKeyUp(KeyCode.Keypad9))
+			{
 				debugState = false;
 				Debug.Log("Debug Disabled");
 			}
@@ -52,26 +53,31 @@ public class SceneManager : MonoBehaviour
 			if (Input.GetKeyUp (KeyCode.Keypad2)) Application.LoadLevel (2);
 			if (Input.GetKeyUp (KeyCode.Keypad3)) Application.LoadLevel (3);
 
-
-
 			// log gameData
 			if (Input.GetKeyUp (KeyCode.I))
 				Debug.Log(gameData);
-
-
-		} else {
+		}
+		else
+		{
 			if(Input.GetKeyUp(KeyCode.Keypad9))
 			{
 				debugState = true;
 				Debug.Log("Debug Enabled");
 			}
 		}
-		
+	}
 
+	public void ChangeScene(int newScene, bool willReturn)
+	{
+		if (!willReturn)
+			gameData.last_scene = newScene;
 
-
-
-
+		Application.LoadLevel (newScene);
+	}
+	public void ReturnToPrevScene()
+	{
+		int tmp = this.gameData.last_scene;
+		Application.LoadLevel (tmp);
 	}
 
 
